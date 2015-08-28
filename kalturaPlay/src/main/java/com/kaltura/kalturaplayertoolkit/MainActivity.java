@@ -36,9 +36,7 @@ public class MainActivity extends Activity implements LoginFragment.OnFragmentIn
         if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
             WebView.setWebContentsDebuggingEnabled(true);
         }
-
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_NOSENSOR);
-
         loadFragment();
     }
 
@@ -76,14 +74,14 @@ public class MainActivity extends Activity implements LoginFragment.OnFragmentIn
         if (extras == null) {
             extras = new Bundle();
         }
-        KPPlayerConfig config = new  KPPlayerConfig("http://10.0.21.46/html5.kaltura/mwEmbed/mwEmbedFrame.php", "15115621", "kaltura_player_1428841967");
-        config.setWid("_1091");
-        config.setCacheSt("1428841967");
+       /* KPPlayerConfig config = new  KPPlayerConfig("http://cdnapi.kaltura.com/html5.kaltura/mwEmbed/mwEmbedFrame.php", "15115621", "kaltura_player_1428841967");
+        config.setWid("1988382");
+        //config.setCacheSt("1428841967");
         config.setEntryId("0_nt4qzwvs");
         config.setDebug(true);
         config.addConfig("nativeCallout", "{\"plugin\":true}");
         config.setForceMobileHTML5(true);
-        extras.putString(getString(R.string.prop_iframe_url), config.getVideoURL());
+        extras.putString(getString(R.string.prop_iframe_url), "https://cdnapisec.kaltura.com/p/243342/sp/24334200/embedIframeJs/uiconf_id/12905712/partner_id/243342?iframeembed=true&entry_id=1_sf5ovm7u");*/
         FragmentUtilities.loadFragment(false, fragment, extras, getFragmentManager());
     }
 

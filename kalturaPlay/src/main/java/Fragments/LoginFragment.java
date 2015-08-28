@@ -79,7 +79,7 @@ public class LoginFragment extends Fragment {
 
             @Override
             public void onClick(View v) {
-                mListener.onFragmentInteraction(null);
+                mListener.onFragmentInteraction(Uri.parse("https://cdnapisec.kaltura.com/p/243342/sp/24334200/embedIframeJs/uiconf_id/12905712/partner_id/243342?iframeembed=true&entry_id=1_sf5ovm7u"));
 //                String url = "http://player.kaltura.com/docs/?forceKalturaNativeComponentPlayer";
 //                Intent i = new Intent(Intent.ACTION_VIEW);
 //                i.setData(Uri.parse(url));

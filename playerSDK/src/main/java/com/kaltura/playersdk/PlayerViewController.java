@@ -3,6 +3,7 @@ package com.kaltura.playersdk;
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Context;
+import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Point;
 import android.media.AudioManager;
@@ -16,6 +17,9 @@ import android.view.Display;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.BounceInterpolator;
+import android.webkit.ConsoleMessage;
+import android.webkit.WebChromeClient;
+import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.RelativeLayout;
 
@@ -261,7 +265,7 @@ public class PlayerViewController extends RelativeLayout implements KControlsVie
 
 
         if(mWebView != null) {
-//            mWebView.loadUrl("javascript:android.onData(NativeBridge.videoPlayer.getControlBarHeight())");
+          // mWebView.loadUrl("javascript:android.onData(NativeBridge.videoPlayer.getControlBarHeight())");
             mWebView.fetchControlsBarHeight(new KControlsView.ControlsBarHeightFetcher() {
                 @Override
                 public void fetchHeight(int controlBarHeight) {
@@ -331,8 +335,15 @@ public class PlayerViewController extends RelativeLayout implements KControlsVie
     public void setComponents(String iframeUrl) {
         if(mWebView == null) {
             mWebView = new KControlsView(getContext());
+            mWebView.setWebChromeClient(new WebChromeClient());
+            mWebView.setWebViewClient(new WebViewClient());
+            mWebView.clearCache(true);
+            mWebView.clearHistory();
+            mWebView.getSettings().setJavaScriptEnabled(true);
+            //mWebView.getSettings().setJavaScriptCanOpenWindowsAutomatically(true);
             mWebView.setKControlsViewClient(this);
-
+            mWebView.setLayerType(View.LAYER_TYPE_SOFTWARE, null);
+            mWebView.setBackgroundColor(0);
             mCurSec = 0;
             ViewGroup.LayoutParams currLP = getLayoutParams();
             LayoutParams wvLp = new LayoutParams(currLP.width, currLP.height);
@@ -341,11 +352,10 @@ public class PlayerViewController extends RelativeLayout implements KControlsVie
             this.playerController.addPlayerToController(this);
             this.addView(mWebView, wvLp);
         }
-
         iframeUrl = RequestHandler.getIframeUrlWithNativeVersion(iframeUrl, this.getContext());
         if( mIframeUrl == null || !mIframeUrl.equals(iframeUrl) )
         {
-            iframeUrl = iframeUrl + "&iframeembed=true";
+           iframeUrl = iframeUrl + "&iframeembed=true";
             mIframeUrl = iframeUrl;
             mWebView.loadUrl(iframeUrl);
         }

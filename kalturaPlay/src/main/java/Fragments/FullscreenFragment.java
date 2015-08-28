@@ -155,14 +155,15 @@ public class FullscreenFragment extends Fragment{
         showPlayerView();
         Bundle bundle = getArguments();
         String iFrameUrl;
-        if (bundle != null && (iFrameUrl = bundle.getString(getString(R.string.prop_iframe_url))) != null){
+        // skipping the Hard coded Url that why code is Commented.
+       /*if (bundle != null && (iFrameUrl = bundle.getString(getString(R.string.prop_iframe_url))) != null){
             mPlayerView.setComponents(iFrameUrl);
-        }else{
+        }else{*/
             mPlayerView.setComponents(new RequestDataSource() {
 
                 @Override
                 public String getWid() {
-                    return "243342";
+                    return "1988382";
                 }
 
                 @Override
@@ -178,14 +179,16 @@ public class FullscreenFragment extends Fragment{
 
                 @Override
                 public String getUiConfId() {
-                    return "21384602";
+                    return "30743062";
                 }
-
+                                                    // 21384602
+                                                    // 12905712
+                                                    // 30743062
                 @Override
                 public String getServerAddress() {
                     return "http://cdnapi.kaltura.com";
-
-//                    return "http://cdnbakmi.kaltura.com/html5/html5lib/v2.25.2/mwEmbedFrame.php";
+                   // return "http://cfvod.kaltura.com";
+                //    return "http://cdnbakmi.kaltura.com/html5/html5lib/v2.25.2/mwEmbedFrame.php";
                 }
 
                 @Override
@@ -197,16 +200,16 @@ public class FullscreenFragment extends Fragment{
 
                 @Override
                 public String getEntryId() {
-                    return "0_c0r624gh";
+                    return "0_sy3r5yud";
                 }
 
                 @Override
                 public String getCacheStr() {
                     // TODO Auto-generated method stub
-                    return null;
+                    return "1402219661";
                 }
             });
-        }
+        //}
 
         return mFragmentView;
     }
@@ -255,8 +258,8 @@ public class FullscreenFragment extends Fragment{
         View decorView = getActivity().getWindow().getDecorView(); //navigation view
         int uiOptions = FULL_SCREEN_FLAG;
         decorView.setSystemUiVisibility(uiOptions);
-//        Point size = getRealScreenSize();
-//        mPlayerView.setPlayerViewDimensions(size.x, size.y);
+        Point size = getRealScreenSize();
+        mPlayerView.setPlayerViewDimensions(size.x, size.y);
     }
 
     private Point getScreenWithoutNavigationSize() {
@@ -303,6 +306,7 @@ public class FullscreenFragment extends Fragment{
         getActivity().getWindowManager().getDefaultDisplay().getSize(size);
         mPlayerView.setPlayerViewDimensions( size.x, size.y, 0, 0 );
     }
+/*
 
     @Override
     public void onConfigurationChanged(Configuration newConfig) {
@@ -327,8 +331,9 @@ public class FullscreenFragment extends Fragment{
 
         }
     }
+*/
 
-    @Override
+   /* @Override
     public void onPause() {
         super.onPause();
         if ( mPlayerView != null ) {
@@ -342,6 +347,6 @@ public class FullscreenFragment extends Fragment{
         if ( mPlayerView != null ) {
             mPlayerView.resumePlayer();
         }
-    }
+    }*/
 
 }
